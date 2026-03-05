@@ -10,7 +10,14 @@ body {
     background: #0b1120;
     color: #e2e8f0;
     line-height: 1.6;
-    overflow-x: hidden;
+
+    /* Center all text globally */
+    text-align: center;
+}
+
+/* Center everything inside main containers */
+.container, .section, .hero-content, .center {
+    text-align: center;
 }
 
 /* Container */
