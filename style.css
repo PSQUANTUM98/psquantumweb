@@ -11,7 +11,12 @@ body {
     color: #e2e8f0;
     line-height: 1.6;
 
-    /* Add this line: */
+    /* Center all text globally */
+    text-align: center;
+}
+
+/* Center everything inside main containers */
+.container, .section, .hero-content, .center {
     text-align: center;
 }
 
