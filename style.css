@@ -1,4 +1,59 @@
-/* Hero */
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #0b1120;
+    color: #e2e8f0;
+    line-height: 1.6;
+}
+
+/* Container */
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* Header */
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    background: rgba(10, 15, 30, 0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    z-index: 1000;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.logo {
+    height: 45px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #cbd5e1;
+    margin-left: 30px;
+    font-weight: 500;
+    transition: 0.3s ease;
+}
+
+nav a:hover {
+    color: #00c6ff;
+}
+
+/* Hero Section */
 .hero {
     position: relative;
     padding: 180px 0 140px;
@@ -34,4 +89,96 @@
     color: #94a3b8;
     font-size: 1.1rem;
     margin-bottom: 40px;
+}
+
+/* Sections */
+.section {
+    padding: 100px 0;
+}
+
+.section h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.section-text {
+    max-width: 700px;
+    color: #94a3b8;
+}
+
+/* Dark Section */
+.dark-section {
+    background: #0f172a;
+}
+
+/* Grid Layout */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+/* Cards */
+.card {
+    background: rgba(255,255,255,0.03);
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: 0.3s ease;
+    text-align: center;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(0,198,255,0.4);
+}
+
+/* Service Icons */
+.service-icon {
+    width: 50px;
+    margin-bottom: 15px;
+}
+
+/* Buttons */
+.btn-primary, .btn-secondary {
+    display: inline-block;
+    padding: 14px 32px;
+    border-radius: 30px;
+    text-decoration: none;
+    margin-top: 20px;
+    transition: 0.3s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(90deg, #00c6ff, #8a2be2);
+    color: white;
+}
+
+.btn-primary:hover {
+    box-shadow: 0 10px 25px rgba(0,198,255,0.3);
+}
+
+.btn-secondary {
+    border: 1px solid #00c6ff;
+    color: #00c6ff;
+}
+
+.btn-secondary:hover {
+    background: #00c6ff;
+    color: #0b1120;
+}
+
+/* Centered Section */
+.center {
+    text-align: center;
+}
+
+/* Footer */
+footer {
+    background: #060b17;
+    padding: 40px 0;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #64748b;
 }
