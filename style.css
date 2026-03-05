@@ -151,6 +151,11 @@ nav a:hover {
     text-align: center;
 }
 
+.service-icon {
+    width: 50px;
+    margin-bottom: 15px;
+}
+
 /* Footer */
 footer {
     background: #060b17;
