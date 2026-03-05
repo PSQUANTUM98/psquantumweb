@@ -38,7 +38,13 @@ header {
 }
 
 .logo {
-    height: 45px;
+    height: 80px;
+}
+
+@media (max-width: 768px) {
+    .logo {
+        height: 60px;
+    }
 }
 
 nav a {
