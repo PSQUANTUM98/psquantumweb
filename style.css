@@ -10,12 +10,13 @@ body {
     background: #0b1120;
     color: #e2e8f0;
     line-height: 1.6;
+    overflow-x: hidden;
 
     /* Center all text globally */
     text-align: center;
 }
 
-/* Center everything inside main containers */
+/* Ensure containers and sections center all content */
 .container, .section, .hero-content, .center {
     text-align: center;
 }
@@ -89,7 +90,6 @@ nav a:hover {
 .hero {
     position: relative;
     padding: 180px 0 140px;
-    text-align: center;
     overflow: hidden;
     background: radial-gradient(circle at center, #111a35 0%, #0b1120 100%);
 }
