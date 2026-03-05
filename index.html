@@ -20,8 +20,10 @@
     </div>
 </header>
 
+<!-- Hero Section with Quantum Background -->
 <section class="hero">
-    <div class="container">
+    <canvas id="heroCanvas"></canvas>
+    <div class="hero-content container">
         <h1>Reliable IT & Networking Solutions</h1>
         <p>Providing professional Systems Administration, Networking, Hardware & Software support, CCTV Systems, and IT consultation for homes and businesses.</p>
         <a href="#services" class="btn-primary">Explore Services</a>
@@ -95,6 +97,46 @@
         <p>Email: contact@yourdomain.com | Phone: +1 (555) 123-4567</p>
     </div>
 </footer>
+
+<!-- Quantum Background Animation Script -->
+<script>
+const canvas = document.getElementById('heroCanvas');
+const ctx = canvas.getContext('2d');
+let width, height;
+let particles = [];
+
+function initCanvas() {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = 600; // Hero height
+    particles = [];
+    for(let i=0; i<120; i++){
+        particles.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            r: Math.random() * 2 + 1,
+            dx: (Math.random() - 0.5) * 1.5,
+            dy: (Math.random() - 0.5) * 1.5
+        });
+    }
+}
+function animate() {
+    ctx.clearRect(0,0,width,height);
+    for(let p of particles){
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+        ctx.fillStyle = 'rgba(0,198,255,0.6)';
+        ctx.fill();
+        p.x += p.dx;
+        p.y += p.dy;
+        if(p.x <0 || p.x>width) p.dx*=-1;
+        if(p.y <0 || p.y>height) p.dy*=-1;
+    }
+    requestAnimationFrame(animate);
+}
+window.addEventListener('resize', initCanvas);
+initCanvas();
+animate();
+</script>
 
 </body>
 </html>
