@@ -110,11 +110,18 @@ nav a:hover {
     border-radius: 12px;
     border: 1px solid rgba(255,255,255,0.05);
     transition: 0.3s ease;
+    text-align: center;
 }
 
 .card:hover {
     transform: translateY(-6px);
     border-color: rgba(0,198,255,0.4);
+}
+
+/* Service Icons */
+.service-icon {
+    width: 50px;
+    margin-bottom: 15px;
 }
 
 /* Buttons */
@@ -149,11 +156,6 @@ nav a:hover {
 /* Centered Section */
 .center {
     text-align: center;
-}
-
-.service-icon {
-    width: 50px;
-    margin-bottom: 15px;
 }
 
 /* Footer */
