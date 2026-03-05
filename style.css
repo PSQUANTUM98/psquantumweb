@@ -10,7 +10,9 @@ body {
     background: #0b1120;
     color: #e2e8f0;
     line-height: 1.6;
-    overflow-x: hidden;
+
+    /* Add this line: */
+    text-align: center;
 }
 
 /* Container */
