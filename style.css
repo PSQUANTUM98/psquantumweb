@@ -164,58 +164,65 @@ gap:35px;
 margin-top:50px;
 }
 
-/* Cards */
+/* SERVICE CARDS WITH BACKGROUND IMAGE */
+
 .card{
-background:rgba(255,255,255,0.05);
-padding:35px 25px;
-border-radius:18px;
-border:1px solid rgba(255,255,255,0.08);
-backdrop-filter:blur(10px);
-transition:all 0.35s ease;
 position:relative;
-
+border-radius:18px;
+overflow:hidden;
+min-height:260px;
 display:flex;
-flex-direction:column;
-align-items:center;
+align-items:flex-end;
+text-align:left;
+transition:transform 0.35s ease, box-shadow 0.35s ease;
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
 }
 
+/* Dark gradient overlay */
 .card::before{
-content:'';
+content:"";
 position:absolute;
-top:-2px;
-left:-2px;
-right:-2px;
-bottom:-2px;
-background:linear-gradient(135deg,#00c6ff,#8a2be2);
-border-radius:20px;
-z-index:-1;
-opacity:0;
-transition:opacity 0.35s ease;
+top:0;
+left:0;
+right:0;
+bottom:0;
+background:linear-gradient(
+to top,
+rgba(0,0,0,0.9),
+rgba(0,0,0,0.5),
+rgba(0,0,0,0.15)
+);
+z-index:1;
 }
 
+/* Zoom image effect */
 .card:hover{
 transform:translateY(-10px);
 box-shadow:0 18px 45px rgba(0,198,255,0.25);
 }
 
-.card:hover::before{
-opacity:1;
+.card:hover{
+background-size:110%;
 }
 
-.card h3{
+/* Card text content */
+.card-content{
+position:relative;
+z-index:2;
+padding:25px;
+}
+
+.card-content h3{
+color:white;
 margin-bottom:10px;
-color:#ffffff;
+font-size:1.3rem;
 }
 
-/* Icons */
-.service-icon{
-width:90px;
-margin-bottom:20px;
-transition:transform 0.3s;
-}
-
-.card:hover .service-icon{
-transform:scale(1.15);
+.card-content p{
+color:#d1d5db;
+font-size:0.95rem;
 }
 
 /* Buttons */
@@ -270,6 +277,7 @@ align-items:center;
 }
 
 /* Responsive */
+
 @media (max-width:1024px){
 
 .hero h1{
@@ -312,6 +320,10 @@ font-size:1rem;
 
 .grid{
 gap:25px;
+}
+
+.card{
+min-height:220px;
 }
 
 }
