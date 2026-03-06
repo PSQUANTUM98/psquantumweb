@@ -12,11 +12,11 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
 
-    /* Center all text globally */
+    /* Global text centering */
     text-align: center;
 }
 
-/* Ensure containers and sections center all content */
+/* Ensure all main containers center content */
 .container, .section, .hero-content, .center {
     text-align: center;
 }
@@ -86,18 +86,17 @@ nav a:hover {
     color: #00c6ff;
 }
 
-/* Hero Section - fully centered */
+/* Hero Section */
 .hero {
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* vertical centering */
-    align-items: center;     /* horizontal centering */
+    justify-content: center;
+    align-items: center;
     padding: 180px 0 140px;
     overflow: hidden;
     background: radial-gradient(circle at center, #111a35 0%, #0b1120 100%);
-    text-align: center;
-    min-height: 80vh; /* ensures hero takes up most of viewport */
+    min-height: 80vh;
 }
 
 #heroCanvas {
@@ -149,8 +148,13 @@ nav a:hover {
     color: #fff;
 }
 
-.section-text {
+/* FIXED CENTERING FOR SECTION TEXT */
+.section-text,
+.section p {
     max-width: 750px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
     color: #94a3b8;
     font-size: 1.1rem;
 }
@@ -171,7 +175,7 @@ nav a:hover {
     margin-top: 50px;
 }
 
-/* Cards - fully centered content */
+/* Cards */
 .card {
     background: rgba(255, 255, 255, 0.05);
     padding: 35px 25px;
@@ -184,7 +188,6 @@ nav a:hover {
 
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* change to center if vertical centering needed */
     align-items: center;
 }
 
@@ -208,12 +211,11 @@ nav a:hover {
     opacity: 1;
 }
 
-/* Service Icons - centered */
+/* Service Icons */
 .service-icon {
     width: 120px;
     margin-bottom: 20px;
     transition: transform 0.3s ease;
-
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -223,7 +225,7 @@ nav a:hover {
     transform: scale(1.15);
 }
 
-/* Buttons - centered */
+/* Buttons */
 .btn-primary, .btn-secondary {
     display: inline-block;
     padding: 16px 36px;
@@ -233,9 +235,6 @@ nav a:hover {
     font-weight: 600;
     letter-spacing: 0.5px;
     transition: all 0.4s ease;
-
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .btn-primary {
