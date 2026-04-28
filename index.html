@@ -209,17 +209,38 @@ Contact us today to discuss your requirements.
 </div>
   -------------
  <!-- Where emails will be sent -->
-<form method="post" action="https://email.gosecureserver.in/api/send.php">
-  <input type="hidden" name="to" value="psquantum@proton.me">
-  <input type="hidden" name="subject" value="New message from website">
-  <input type="hidden" name="redirect" value="https://psquantum98.github.io/psquantumweb/thank-you.html">
+<div class="contact-form-wrapper">
 
-  <input type="text" name="name" required>
-  <input type="email" name="email" required>
-  <textarea name="message" required></textarea>
+  <h3 class="form-title">Send Us a Message</h3>
 
-  <button type="submit">Send</button>
-</form>
+  <form method="post" action="https://email.gosecureserver.in/api/send.php" class="contact-form">
+
+    <input type="hidden" name="to" value="psquantum@proton.me">
+    <input type="hidden" name="subject" value="New message from website">
+    <input type="hidden" name="redirect" value="https://psquantum98.github.io/psquantumweb/thank-you.html">
+
+    <!-- Anti-spam -->
+    <input type="text" name="_gotcha" class="hidden-field">
+
+    <div class="form-group">
+      <label>Name</label>
+      <input type="text" name="name" placeholder="Your name" required>
+    </div>
+
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" name="email" placeholder="your@email.com" required>
+    </div>
+
+    <div class="form-group">
+      <label>Message</label>
+      <textarea name="message" rows="5" placeholder="Tell us what you need..." required></textarea>
+    </div>
+
+    <button type="submit" class="btn-primary form-btn">Send Message</button>
+
+  </form>
+</div>
 
 </div>
   -------------
