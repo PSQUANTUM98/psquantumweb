@@ -209,16 +209,16 @@ Contact us today to discuss your requirements.
 </div>
   -------------
  <!-- Where emails will be sent -->
+<form method="post" action="https://email.gosecureserver.in/api/send.php">
   <input type="hidden" name="to" value="psquantum@proton.me">
-
-  <!-- Optional subject -->
   <input type="hidden" name="subject" value="New message from website">
+  <input type="hidden" name="redirect" value="https://psquantum98.github.io/psquantumweb/thank-you.html">
 
-  <input type="text" name="name" placeholder="Your name" required>
-  <input type="email" name="email" placeholder="Your email" required>
-  <textarea name="message" placeholder="Your message" required></textarea>
+  <input type="text" name="name" required>
+  <input type="email" name="email" required>
+  <textarea name="message" required></textarea>
 
-  <button type="submit">Send Message</button>
+  <button type="submit">Send</button>
 </form>
 
 </div>
