@@ -4,10 +4,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <meta name="description" content="Professional IT services: Systems Administration, Networking, Hardware & Software, CCTV Systems, and IT consultation for home and business.">
+
 <title>Quantum Tech Solutions | IT & Networking Services</title>
+
 <link rel="stylesheet" href="style.css">
 <link rel="icon" type="image/png" href="images/quantumlogo.png">
+
 </head>
 
 <body>
@@ -26,42 +30,164 @@
 </div>
 </header>
 
+<!-- HERO SECTION -->
+
 <section class="hero">
 <canvas id="heroCanvas"></canvas>
+
 <div class="hero-content container">
 <h1>Reliable IT & Networking Solutions</h1>
+
 <p>
 Providing professional Systems Administration, Networking, Hardware & Software support,
 CCTV Systems, and IT consultation for homes and businesses.
 </p>
+
 <a href="#services" class="btn-primary">View Our Services</a>
 </div>
+
 </section>
+
+<!-- ABOUT -->
 
 <section id="about" class="section">
 <div class="container">
 <h2>About Us</h2>
+
 <p class="section-text">
-At Quantum Tech Solutions, we're passionate about making technology work for you.
+At Quantum Tech Solutions, we're passionate about making technology work for you — not the other way around. Based in Pretoria, we bring hands-on expertise to homes and businesses across the region, delivering reliable solutions in networking, computer systems, software deployment, CCTV, and IT consultation. We keep things simple, secure, and stress-free, so you can focus on what matters most. Whether you need a quick fix or a long-term IT partner, we're here for you.
 </p>
+
 </div>
 </section>
+
+<!-- SERVICES -->
 
 <section id="services" class="section dark-section">
 <div class="container">
+
 <h2>Our Services</h2>
+
 <div class="grid">
-<!-- cards unchanged -->
+
+<div class="card" style="background-image: url('images/wifi.jpg');">
+<div class="card-content">
+<h3>Wi-Fi & Network Setup</h3>
+<p>Fast, stable Wi-Fi throughout your home or office — no dead zones, no dropouts.</p>
+</div>
+</div>
+
+<div class="card" style="background-image: url('images/sec_bckp.jpg');">
+<div class="card-content">
+<h3>Security & Backup Setup</h3>
+<p>Protect your devices and data with smart security and automatic backups that just run.</p>
+</div>
+</div>
+
+<div class="card" style="background-image: url('images/it_support.jpg');">
+<div class="card-content">
+<h3>Ongoing IT Support</h3>
+<p>Reliable, on-demand IT support whenever you need it — without hiring full-time staff.</p>
+</div>
+</div>
+
+<div class="card" style="background-image: url('images/hardware-icon.png');">
+<div class="card-content">
+<h3>Hardware & Software</h3>
+<p>Installation, troubleshooting, and optimization of computer hardware and software.</p>
+</div>
+</div>
+
+<div class="card" style="background-image: url('images/web_app2.jpg');">
+<div class="card-content">
+<h3>Web & App Setup</h3>
+<p>Simple, modern websites and apps set up for your business.</p>
+</div>
+</div>
+
+<div class="card" style="background-image: url('images/it_consult.jpg');">
+<div class="card-content">
+<h3>IT Consultation</h3>
+<p>Straightforward advice on the best tech for your needs.</p>
+</div>
+</div>
+
+<div class="card" style="background-image: url('images/cctv-icon.png');">
+<div class="card-content">
+<h3>CCTV & Security Systems</h3>
+<p>Reliable camera systems installed and configured for monitoring anytime.</p>
+</div>
+</div>
+
 </div>
 </div>
 </section>
 
+<!-- CALL TO ACTION -->
+
 <section class="section">
 <div class="container center">
+
 <h2>Ready to Improve Your IT?</h2>
+
 <p class="section-text">
-Contact us today to discuss your requirements.
+Contact us today to discuss your home or business IT requirements.
 </p>
 
 <a href="https://wa.me/27622570677?text=Hi%20I'm%20interested%20in%20your%20IT%20services"
+   class="btn-secondary whatsapp-btn"
+   target="_blank">
+   Get in Touch
+</a>
+
+</div>
+</section>
+
+<!-- FOOTER -->
+
+<footer id="contact">
+<div class="container footer-content">
+<p>© 2026 PS Quantum Tech Solutions. All rights reserved.</p>
+<p>Email: psquantum@proton.me | Phone: +27 62 257 0677</p>
+</div>
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+<a href="https://wa.me/27622570677?text=Hi%20I'm%20interested%20in%20your%20services"
+class="whatsapp-float"
+target="_blank">💬</a>
+
+<!-- SCRIPTS -->
+
+<script>
+// Header shadow
+const header = document.getElementById('header');
+window.addEventListener('scroll', () => {
+  header.classList.toggle('scrolled', window.scrollY > 20);
+});
+
+// Active nav
+const sections = document.querySelectorAll("section");
+const navLinks = document.querySelectorAll("nav a");
+
+window.addEventListener("scroll", () => {
+  let current = "";
+
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 120;
+    if (window.scrollY >= sectionTop) {
+      current = section.getAttribute("id");
+    }
+  });
+
+  navLinks.forEach(link => {
+    link.classList.remove("active");
+    if (link.getAttribute("href") === "#" + current) {
+      link.classList.add("active");
+    }
+  });
+});
+</script>
+
+</body>
 </html>
