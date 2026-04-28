@@ -382,3 +382,43 @@ min-height:220px;
 
 }
 
+/* ===== CONTACT FORM FIX ===== */
+
+.contact-section{
+text-align:center;
+}
+
+.contact-form-wrapper{
+max-width:500px;
+margin:40px auto;
+padding:30px;
+background:rgba(15,23,42,0.9);
+border-radius:12px;
+box-shadow:0 0 20px rgba(0,198,255,0.15);
+}
+
+.contact-form{
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+.contact-form input,
+.contact-form textarea{
+width:100%;
+padding:12px;
+border-radius:8px;
+border:none;
+background:#0b1120;
+color:#fff;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus{
+outline:none;
+box-shadow:0 0 10px rgba(0,198,255,0.4);
+}
+
+.form-btn{
+width:100%;
+}
