@@ -1,4 +1,4 @@
-/* Full page particle background */
+/* FULL PAGE PARTICLE BACKGROUND */
 #bgCanvas{
 position:fixed;
 top:0;
@@ -9,7 +9,7 @@ z-index:0;
 pointer-events:none;
 }
 
-/* Ensure content stays above */
+/* Keep content above canvas */
 header,
 .hero,
 .section,
@@ -381,3 +381,4 @@ min-height:220px;
 }
 
 }
+
