@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const toEmail = form.to ? form.to.value.trim() : "psquantum@proton.me";
 
-    emailjs.send("service_6a7invr", "template_7wyxz5ab", {
+    emailjs.send("service_6zq3jtd", "template_7wxz5ab", {
       from_name: form.name.value.trim(),
       reply_to: form.email.value.trim(),
       message: form.message.value.trim(),
