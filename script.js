@@ -92,7 +92,7 @@ initParticles();
 
 
 // ===== EMAIL FORM HANDLER =====
-emailjs.init("YOUR_PUBLIC_KEY");
+emailjs.init(76Jx2uRdBIqWvu8gY);
 
 document.addEventListener("DOMContentLoaded", () => {
 const form = document.getElementById("contactForm");
