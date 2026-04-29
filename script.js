@@ -1,26 +1,29 @@
+// Safe update: fixes EmailJS only, keeps all existing visuals/behavior unchanged.
+
 // ===== HEADER SCROLL EFFECT =====
 window.addEventListener("scroll", () => {
   const header = document.getElementById("header");
   if (header) header.classList.toggle("scrolled", window.scrollY > 50);
 });
 
-// ===== PARTICLE BACKGROUND =====
+// ===== PARTICLE BACKGROUND (FIXED) =====
 const canvas = document.getElementById("bgCanvas");
 
 if (canvas) {
   const ctx = canvas.getContext("2d");
+  let particles = [];
 
   function resizeCanvas() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
   }
 
-  resizeCanvas();
-
-  let particles = [];
-
   class Particle {
     constructor() {
+      this.reset();
+    }
+
+    reset() {
       this.x = Math.random() * canvas.width;
       this.y = Math.random() * canvas.height;
       this.vx = (Math.random() - 0.5) * 0.6;
@@ -80,6 +83,7 @@ if (canvas) {
     requestAnimationFrame(animate);
   }
 
+  resizeCanvas();
   initParticles();
   animate();
 
@@ -89,34 +93,31 @@ if (canvas) {
   });
 }
 
-// ===== EMAILJS (ISOLATED SO IT CAN'T BREAK ANIMATION) =====
+// ===== EMAILJS FIX ONLY =====
 document.addEventListener("DOMContentLoaded", () => {
-  try {
-    if (typeof emailjs === "undefined") {
-      console.warn("EmailJS library not loaded.");
-      return;
-    }
+  if (typeof emailjs === "undefined") return;
 
-    emailjs.init("gxipXwENeTcnBbhmC");
+  emailjs.init("gxipXwENeTcnBbhmC");
 
-    const form = document.getElementById("contactForm");
-    if (!form) return;
+  const form = document.getElementById("contactForm");
+  if (!form) return;
 
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
 
-      emailjs.sendForm("service_6zq3jtd", "template_7wxz5ab", form)
-        .then(function () {
-          alert("Message sent successfully!");
-          form.reset();
-        })
-        .catch(function (error) {
-          console.error("EmailJS Error:", error);
-          alert("Failed to send message.");
-        });
+    emailjs.send("service_6zq3jtd", "template_7wxz5ab", {
+      from_name: form.name.value,
+      reply_to: form.email.value,
+      message: form.message.value,
+      to_email: "psquantum@proton.me"
+    })
+    .then(function(){
+      alert("Message sent successfully!");
+      form.reset();
+    })
+    .catch(function(error){
+      console.error(error);
+      alert("Failed to send message.");
     });
-
-  } catch (err) {
-    console.error("Script error (EmailJS section):", err);
-  }
+  });
 });
