@@ -37,11 +37,16 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", function(e){
     e.preventDefault();
 
+    const toEmail = form.to ? form.to.value.trim() : "psquantum@proton.me";
+
     emailjs.send("service_6a7invr", "template_7wyxz5ab", {
-      from_name: form.name.value,
-      reply_to: form.email.value,
-      message: form.message.value,
-      to_email: "psquantum@proton.me"
+      from_name: form.name.value.trim(),
+      reply_to: form.email.value.trim(),
+      message: form.message.value.trim(),
+
+      // Send both versions so EmailJS template will always match
+      to: toEmail,
+      to_email: toEmail
     })
     .then(function(){
       alert("Message sent successfully!");
