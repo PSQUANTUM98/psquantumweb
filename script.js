@@ -101,7 +101,7 @@ if(form){
 form.addEventListener("submit", function(e){
 e.preventDefault();
 
-emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+emailjs.send(service_6a7invr, template_7wyxz5ab, {
 from_name: form.name.value,
 reply_to: form.email.value,
 message: form.message.value
