@@ -29,7 +29,7 @@ window.addEventListener("resize",()=>{canvas.width=window.innerWidth;canvas.heig
 document.addEventListener("DOMContentLoaded", () => {
   if (typeof emailjs === "undefined") return;
 
-  emailjs.init("76Jx2uRdBIqWvu8gY");
+  emailjs.init("gxipXwENeTcnBbhmC");
 
   const form = document.getElementById("contactForm");
   if (!form) return;
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", function(e){
     e.preventDefault();
 
-    emailjs.sendForm("service_6a7invr", "template_7wyxz5ab", form)
+    emailjs.sendForm("service_6zq3jtd", "template_7wxz5ab", form)
     .then(function(){
       alert("Message sent successfully!");
       form.reset();
