@@ -105,10 +105,22 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", function(e){
     e.preventDefault();
 
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    const message = form.message.value.trim();
+
     emailjs.send("service_6zq3jtd", "template_7wxz5ab", {
-      from_name: form.name.value,
-      reply_to: form.email.value,
-      message: form.message.value,
+      from_name: name,
+
+      // IMPORTANT: send email under multiple names so template always receives it
+      reply_to: email,
+      from_email: email,
+      user_email: email,
+      email: email,
+
+      message: message,
+
+      // recipient email
       to_email: "psquantum@proton.me"
     })
     .then(function(){
@@ -116,7 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
       form.reset();
     })
     .catch(function(error){
-      console.error(error);
+      console.error("EmailJS Error:", error);
       alert("Failed to send message.");
     });
   });
