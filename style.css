@@ -1,4 +1,4 @@
-/* FULL PAGE PARTICLE BACKGROUND */
+/* ===== FULL PAGE PARTICLE BACKGROUND ===== */
 #bgCanvas{
 position:fixed;
 top:0;
@@ -10,21 +10,7 @@ pointer-events:none;
 }
 
 /* Keep content above canvas */
-header{
-position:fixed;
-width:100%;
-top:0;
-background:rgba(10,15,30,0.6);
-backdrop-filter:blur(20px);
-border-bottom:1px solid rgba(255,255,255,0.08);
-z-index:1000;
-transition:all 0.3s ease;
-}
-
-header.scrolled{
-background:rgba(10,15,30,0.9);
-padding:5px 0;
-}
+header,
 .hero,
 .section,
 footer{
@@ -32,7 +18,7 @@ position:relative;
 z-index:1;
 }
 
-/* Reset */
+/* ===== RESET ===== */
 *{
 margin:0;
 padding:0;
@@ -49,31 +35,33 @@ overflow-x:hidden;
 text-align:center;
 }
 
-/* Container */
+/* ===== CONTAINER ===== */
 .container{
 width:90%;
 max-width:1200px;
 margin:auto;
 }
 
-/* Header */
+/* ===== HEADER (MODERN UPGRADE) ===== */
 header{
 position:fixed;
 width:100%;
 top:0;
-background:rgba(10,15,30,0.95);
-backdrop-filter:blur(15px);
-border-bottom:1px solid rgba(255,255,255,0.08);
+background: rgba(10,15,30,0.6);
+backdrop-filter: blur(20px);
+border-bottom: 1px solid rgba(0,198,255,0.2);
 z-index:1000;
 box-shadow:0 2px 12px rgba(0,0,0,0.3);
 transition:0.3s;
 }
 
-/* Scroll shadow */
+/* Scroll effect */
 header.scrolled{
+background: rgba(10,15,30,0.9);
 box-shadow:0 6px 25px rgba(0,0,0,0.5);
 }
 
+/* Nav layout */
 .nav-container{
 display:flex;
 justify-content:space-between;
@@ -81,19 +69,20 @@ align-items:center;
 padding:18px 0;
 }
 
-/* Logo */
-.logo {
+/* ===== LOGO ===== */
+.logo{
 width:120px;
 height:auto;
+filter: drop-shadow(0 0 8px rgba(0,198,255,0.4));
 }
 
-/* Navigation */
+/* ===== NAVIGATION ===== */
 nav{
 display:flex;
 align-items:center;
 }
 
-/* NAV BUTTON STYLE */
+/* Nav buttons */
 nav a{
 text-decoration:none;
 color:#cbd5e1;
@@ -106,6 +95,21 @@ border-radius:30px;
 border:1px solid transparent;
 transition:all 0.3s ease;
 background:rgba(255,255,255,0.03);
+position:relative;
+overflow:hidden;
+}
+
+/* Glow underline effect */
+nav a::after{
+content:"";
+position:absolute;
+bottom:0;
+left:50%;
+width:0%;
+height:2px;
+background:linear-gradient(90deg,#00c6ff,#8a2be2);
+transition:0.3s;
+transform:translateX(-50%);
 }
 
 /* Hover */
@@ -116,13 +120,17 @@ background:rgba(0,198,255,0.08);
 transform:translateY(-2px);
 }
 
-/* Active link */
+nav a:hover::after{
+width:80%;
+}
+
+/* Active */
 nav a.active{
 color:#00c6ff;
 border:1px solid #00c6ff;
 }
 
-/* Hero Section */
+/* ===== HERO ===== */
 .hero{
 position:relative;
 display:flex;
@@ -132,15 +140,6 @@ padding:200px 0 140px;
 overflow:hidden;
 background:radial-gradient(circle at center,#111a35 0%,#0b1120 100%);
 min-height:80vh;
-}
-
-#heroCanvas{
-position:absolute;
-top:0;
-left:0;
-width:100%;
-height:100%;
-z-index:0;
 }
 
 .hero-content{
@@ -170,7 +169,7 @@ margin-bottom:40px;
 max-width:700px;
 }
 
-/* Sections */
+/* ===== SECTIONS ===== */
 .section{
 padding:100px 0;
 position:relative;
@@ -191,7 +190,7 @@ color:#94a3b8;
 font-size:1.1rem;
 }
 
-/* Dark Section */
+/* ===== DARK SECTION ===== */
 .dark-section{
 background:rgba(15,23,42,0.95);
 border-radius:15px;
@@ -199,7 +198,7 @@ padding:80px 0;
 margin-top:40px;
 }
 
-/* Grid */
+/* ===== GRID ===== */
 .grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
@@ -207,7 +206,7 @@ gap:35px;
 margin-top:50px;
 }
 
-/* Cards */
+/* ===== CARDS ===== */
 .card{
 position:relative;
 border-radius:18px;
@@ -261,7 +260,7 @@ color:#d1d5db;
 font-size:0.95rem;
 }
 
-/* Buttons */
+/* ===== BUTTONS ===== */
 .btn-primary,
 .btn-secondary{
 display:inline-block;
@@ -296,7 +295,7 @@ color:#0b1120;
 transform:translateY(-3px);
 }
 
-/* WhatsApp CTA */
+/* WhatsApp button */
 .whatsapp-btn{
 border-color:#25D366;
 color:#25D366;
@@ -328,7 +327,7 @@ transition:0.3s;
 transform:scale(1.1);
 }
 
-/* Footer */
+/* ===== FOOTER ===== */
 footer{
 background:#060b17;
 padding:50px 0;
@@ -344,7 +343,47 @@ gap:10px;
 align-items:center;
 }
 
-/* Responsive */
+/* ===== CONTACT FORM ===== */
+.contact-section{
+text-align:center;
+}
+
+.contact-form-wrapper{
+max-width:500px;
+margin:40px auto;
+padding:30px;
+background:rgba(15,23,42,0.9);
+border-radius:12px;
+box-shadow:0 0 20px rgba(0,198,255,0.15);
+}
+
+.contact-form{
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+.contact-form input,
+.contact-form textarea{
+width:100%;
+padding:12px;
+border-radius:8px;
+border:none;
+background:#0b1120;
+color:#fff;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus{
+outline:none;
+box-shadow:0 0 10px rgba(0,198,255,0.4);
+}
+
+.form-btn{
+width:100%;
+}
+
+/* ===== RESPONSIVE ===== */
 @media (max-width:1024px){
 
 .hero h1{
@@ -394,45 +433,4 @@ gap:25px;
 min-height:220px;
 }
 
-}
-
-/* ===== CONTACT FORM FIX ===== */
-
-.contact-section{
-text-align:center;
-}
-
-.contact-form-wrapper{
-max-width:500px;
-margin:40px auto;
-padding:30px;
-background:rgba(15,23,42,0.9);
-border-radius:12px;
-box-shadow:0 0 20px rgba(0,198,255,0.15);
-}
-
-.contact-form{
-display:flex;
-flex-direction:column;
-gap:15px;
-}
-
-.contact-form input,
-.contact-form textarea{
-width:100%;
-padding:12px;
-border-radius:8px;
-border:none;
-background:#0b1120;
-color:#fff;
-}
-
-.contact-form input:focus,
-.contact-form textarea:focus{
-outline:none;
-box-shadow:0 0 10px rgba(0,198,255,0.4);
-}
-
-.form-btn{
-width:100%;
 }
