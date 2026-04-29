@@ -1,119 +1,89 @@
-const canvas = document.getElementById('bgCanvas');
-const ctx = canvas.getContext('2d');
+// ===== HEADER SCROLL EFFECT =====
+window.addEventListener("scroll", () => {
+const header = document.getElementById("header");
+header.classList.toggle("scrolled", window.scrollY > 50);
+});
+
+// ===== PARTICLE BACKGROUND =====
+const canvas = document.getElementById("bgCanvas");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
 let particles = [];
-let width, height;
-let mouse = { x: null, y: null };
 
-function resize(){
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
+class Particle {
+constructor() {
+this.x = Math.random() * canvas.width;
+this.y = Math.random() * canvas.height;
+this.vx = (Math.random() - 0.5) * 0.6;
+this.vy = (Math.random() - 0.5) * 0.6;
+this.radius = Math.random() * 2;
 }
-window.addEventListener('resize', resize);
-resize();
 
-/* Mouse tracking */
-window.addEventListener('mousemove', (e)=>{
-    mouse.x = e.x;
-    mouse.y = e.y;
+move() {
+this.x += this.vx;
+this.y += this.vy;
+
+if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+}
+
+draw() {
+ctx.beginPath();
+ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+ctx.fillStyle = "#00c6ff";
+ctx.fill();
+}
+}
+
+function initParticles() {
+particles = [];
+for (let i = 0; i < 120; i++) {
+particles.push(new Particle());
+}
+}
+
+function connectParticles() {
+for (let i = 0; i < particles.length; i++) {
+for (let j = i; j < particles.length; j++) {
+
+let dx = particles[i].x - particles[j].x;
+let dy = particles[i].y - particles[j].y;
+let dist = Math.sqrt(dx * dx + dy * dy);
+
+if (dist < 120) {
+ctx.beginPath();
+ctx.strokeStyle = "rgba(0,198,255,0.08)";
+ctx.lineWidth = 1;
+ctx.moveTo(particles[i].x, particles[i].y);
+ctx.lineTo(particles[j].x, particles[j].y);
+ctx.stroke();
+}
+}
+}
+}
+
+function animate() {
+ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+particles.forEach(p => {
+p.move();
+p.draw();
 });
 
-/* Create particles */
-function createParticles(){
-    particles = [];
-    for(let i = 0; i < 120; i++){
-        particles.push({
-            x: Math.random() * width,
-            y: Math.random() * height,
-            r: Math.random() * 2 + 1,
-            dx: (Math.random() - 0.5) * 0.5,
-            dy: (Math.random() - 0.5) * 0.5
-        });
-    }
-}
-createParticles();
+connectParticles();
 
-/* Draw lines between particles */
-function connectParticles(){
-    for(let a = 0; a < particles.length; a++){
-        for(let b = a; b < particles.length; b++){
-            let dx = particles[a].x - particles[b].x;
-            let dy = particles[a].y - particles[b].y;
-            let distance = dx*dx + dy*dy;
-
-            if(distance < 12000){
-                ctx.strokeStyle = 'rgba(0,198,255,0.08)';
-                ctx.lineWidth = 1;
-                ctx.beginPath();
-                ctx.moveTo(particles[a].x, particles[a].y);
-                ctx.lineTo(particles[b].x, particles[b].y);
-                ctx.stroke();
-            }
-        }
-    }
+requestAnimationFrame(animate);
 }
 
-/* Animate */
-function animate(){
-    ctx.clearRect(0,0,width,height);
-
-    for(let p of particles){
-
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
-        ctx.fillStyle = 'rgba(0,198,255,0.6)';
-        ctx.fill();
-
-        p.x += p.dx;
-        p.y += p.dy;
-
-        /* Bounce */
-        if(p.x < 0 || p.x > width) p.dx *= -1;
-        if(p.y < 0 || p.y > height) p.dy *= -1;
-
-        /* Mouse interaction */
-        if(mouse.x && mouse.y){
-            let dx = p.x - mouse.x;
-            let dy = p.y - mouse.y;
-            let dist = Math.sqrt(dx*dx + dy*dy);
-
-            if(dist < 120){
-                p.x += dx / 20;
-                p.y += dy / 20;
-            }
-        }
-    }
-
-    connectParticles();
-    requestAnimationFrame(animate);
-}
-
+initParticles();
 animate();
 
-/* Header shadow */
-const header = document.getElementById('header');
-window.addEventListener('scroll', () => {
-  header.classList.toggle('scrolled', window.scrollY > 20);
-});
-
-/* Active nav */
-const sections = document.querySelectorAll("section");
-const navLinks = document.querySelectorAll("nav a");
-
-window.addEventListener("scroll", () => {
-  let current = "";
-
-  sections.forEach(section => {
-    const sectionTop = section.offsetTop - 120;
-    if (window.scrollY >= sectionTop) {
-      current = section.getAttribute("id");
-    }
-  });
-
-  navLinks.forEach(link => {
-    link.classList.remove("active");
-    if (link.getAttribute("href") === "#" + current) {
-      link.classList.add("active");
-    }
-  });
+// Resize fix
+window.addEventListener("resize", () => {
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+initParticles();
 });
