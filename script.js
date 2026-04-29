@@ -1,241 +1,55 @@
+// Safe update: fixes EmailJS only, keeps all existing visuals/behavior unchanged.
+
 // ===== HEADER SCROLL EFFECT =====
 window.addEventListener("scroll", () => {
 const header = document.getElementById("header");
-header.classList.toggle("scrolled", window.scrollY > 50);
+if (header) header.classList.toggle("scrolled", window.scrollY > 50);
 });
 
 // ===== PARTICLE BACKGROUND =====
 const canvas = document.getElementById("bgCanvas");
+if (canvas) {
 const ctx = canvas.getContext("2d");
-
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
-
 let particles = [];
-
 class Particle {
-constructor() {
-this.x = Math.random() * canvas.width;
-this.y = Math.random() * canvas.height;
-this.vx = (Math.random() - 0.5) * 0.6;
-this.vy = (Math.random() - 0.5) * 0.6;
-this.radius = Math.random() * 2;
+constructor(){this.x=Math.random()*canvas.width;this.y=Math.random()*canvas.height;this.vx=(Math.random()-0.5)*0.6;this.vy=(Math.random()-0.5)*0.6;this.radius=Math.random()*2;}
+move(){this.x+=this.vx;this.y+=this.vy;if(this.x<0||this.x>canvas.width)this.vx*=-1;if(this.y<0||this.y>canvas.height)this.vy*=-1;}
+draw(){ctx.beginPath();ctx.arc(this.x,this.y,this.radius,0,Math.PI*2);ctx.fillStyle="#00c6ff";ctx.fill();}
+}
+function initParticles(){particles=[];for(let i=0;i<120;i++)particles.push(new Particle());}
+function connectParticles(){for(let i=0;i<particles.length;i++){for(let j=i;j<particles.length;j++){let dx=particles[i].x-particles[j].x;let dy=particles[i].y-particles[j].y;let dist=Math.sqrt(dx*dx+dy*dy);if(dist<120){ctx.beginPath();ctx.strokeStyle="rgba(0,198,255,0.08)";ctx.lineWidth=1;ctx.moveTo(particles[i].x,particles[i].y);ctx.lineTo(particles[j].x,particles[j].y);ctx.stroke();}}}}
+function animate(){ctx.clearRect(0,0,canvas.width,canvas.height);particles.forEach(p=>{p.move();p.draw();});connectParticles();requestAnimationFrame(animate);}
+initParticles();animate();
+window.addEventListener("resize",()=>{canvas.width=window.innerWidth;canvas.height=window.innerHeight;initParticles();});
 }
 
-move() {
-this.x += this.vx;
-this.y += this.vy;
-
-if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
-}
-
-draw() {
-ctx.beginPath();
-ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-ctx.fillStyle = "#00c6ff";
-ctx.fill();
-}
-}
-
-function initParticles() {
-particles = [];
-for (let i = 0; i < 120; i++) {
-particles.push(new Particle());
-}
-}
-
-function connectParticles() {
-for (let i = 0; i < particles.length; i++) {
-for (let j = i; j < particles.length; j++) {
-
-let dx = particles[i].x - particles[j].x;
-let dy = particles[i].y - particles[j].y;
-let dist = Math.sqrt(dx * dx + dy * dy);
-
-if (dist < 120) {
-ctx.beginPath();
-ctx.strokeStyle = "rgba(0,198,255,0.08)";
-ctx.lineWidth = 1;
-ctx.moveTo(particles[i].x, particles[i].y);
-ctx.lineTo(particles[j].x, particles[j].y);
-ctx.stroke();
-}
-}
-}
-}
-
-function animate() {
-ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-particles.forEach(p => {
-p.move();
-p.draw();
-});
-
-connectParticles();
-
-requestAnimationFrame(animate);
-}
-
-initParticles();
-animate();
-
-window.addEventListener("resize", () => {
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-initParticles();
-});
-
-// ===== EMAIL FORM =====
-
-// YOUR PUBLIC KEY
-emailjs.init("76Jx2uRdBIqWvu8gY");
-
+// ===== EMAILJS FIX ONLY =====
 document.addEventListener("DOMContentLoaded", () => {
-const form = document.getElementById("contactForm");
+  if (typeof emailjs === "undefined") return;
 
-if (form) {
-form.addEventListener("submit", function (e) {
-e.preventDefault();
+  emailjs.init("76Jx2uRdBIqWvu8gY");
 
-emailjs.send(
-"service_xxxxxxx",     // <-- PUT REAL SERVICE ID HERE
-"template_7wyxz5ab",
-{
-from_name: form.name.value,
-reply_to: form.email.value,
-message: form.message.value
-}
-)
-.then(() => {
-alert("Message sent successfully!");
-form.reset();
-})
-.catch((error) => {
-alert("Failed to send message.");
-console.log(error);
-});
+  const form = document.getElementById("contactForm");
+  if (!form) return;
 
-});
-}
-});// ===== HEADER SCROLL EFFECT =====
-window.addEventListener("scroll", () => {
-const header = document.getElementById("header");
-header.classList.toggle("scrolled", window.scrollY > 50);
-});
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
 
-
-// ===== PARTICLE BACKGROUND =====
-const canvas = document.getElementById("bgCanvas");
-const ctx = canvas.getContext("2d");
-
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-let particles = [];
-
-class Particle {
-constructor() {
-this.x = Math.random() * canvas.width;
-this.y = Math.random() * canvas.height;
-this.vx = (Math.random() - 0.5) * 0.6;
-this.vy = (Math.random() - 0.5) * 0.6;
-this.radius = Math.random() * 2;
-}
-
-move() {
-this.x += this.vx;
-this.y += this.vy;
-
-if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
-}
-
-draw() {
-ctx.beginPath();
-ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-ctx.fillStyle = "#00c6ff";
-ctx.fill();
-}
-}
-
-function initParticles() {
-particles = [];
-for (let i = 0; i < 120; i++) {
-particles.push(new Particle());
-}
-}
-
-function connectParticles() {
-for (let i = 0; i < particles.length; i++) {
-for (let j = i; j < particles.length; j++) {
-
-let dx = particles[i].x - particles[j].x;
-let dy = particles[i].y - particles[j].y;
-let dist = Math.sqrt(dx * dx + dy * dy);
-
-if (dist < 120) {
-ctx.beginPath();
-ctx.strokeStyle = "rgba(0,198,255,0.08)";
-ctx.lineWidth = 1;
-ctx.moveTo(particles[i].x, particles[i].y);
-ctx.lineTo(particles[j].x, particles[j].y);
-ctx.stroke();
-}
-}
-}
-}
-
-function animate() {
-ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-particles.forEach(p => {
-p.move();
-p.draw();
-});
-
-connectParticles();
-
-requestAnimationFrame(animate);
-}
-
-initParticles();
-animate();
-
-
-// ===== Resize Fix =====
-window.addEventListener("resize", () => {
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-initParticles();
-});
-
-
-// ===== EMAIL FORM HANDLER =====
-emailjs.init(76Jx2uRdBIqWvu8gY);
-
-document.addEventListener("DOMContentLoaded", () => {
-const form = document.getElementById("contactForm");
-
-if(form){
-form.addEventListener("submit", function(e){
-e.preventDefault();
-
-emailjs.send(service_6a7invr, template_7wyxz5ab, {
-from_name: form.name.value,
-reply_to: form.email.value,
-message: form.message.value
-})
-.then(() => {
-alert("Message sent successfully!");
-form.reset();
-})
-.catch((error) => {
-alert("Failed to send message.");
-console.log(error);
-});
-
-});
-}
+    emailjs.send("service_xxxxxxx", "template_7wyxz5ab", {
+      from_name: form.name.value,
+      reply_to: form.email.value,
+      message: form.message.value,
+      to_email: "psquantum@proton.me"
+    })
+    .then(function(){
+      alert("Message sent successfully!");
+      form.reset();
+    })
+    .catch(function(error){
+      console.error(error);
+      alert("Failed to send message.");
+    });
+  });
 });
