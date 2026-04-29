@@ -4,6 +4,7 @@ const header = document.getElementById("header");
 header.classList.toggle("scrolled", window.scrollY > 50);
 });
 
+
 // ===== PARTICLE BACKGROUND =====
 const canvas = document.getElementById("bgCanvas");
 const ctx = canvas.getContext("2d");
@@ -81,9 +82,39 @@ requestAnimationFrame(animate);
 initParticles();
 animate();
 
-// Resize fix
+
+// ===== Resize Fix =====
 window.addEventListener("resize", () => {
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 initParticles();
+});
+
+
+// ===== EMAIL FORM HANDLER =====
+emailjs.init("YOUR_PUBLIC_KEY");
+
+document.addEventListener("DOMContentLoaded", () => {
+const form = document.getElementById("contactForm");
+
+if(form){
+form.addEventListener("submit", function(e){
+e.preventDefault();
+
+emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+from_name: form.name.value,
+reply_to: form.email.value,
+message: form.message.value
+})
+.then(() => {
+alert("Message sent successfully!");
+form.reset();
+})
+.catch((error) => {
+alert("Failed to send message.");
+console.log(error);
+});
+
+});
+}
 });
