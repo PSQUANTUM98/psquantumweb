@@ -37,12 +37,17 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", function(e){
     e.preventDefault();
 
-    const toEmail = form.to ? form.to.value.trim() : "psquantum@proton.me";
-
-    emailjs.send("service_6zq3jtd", "template_7wxz5ab", {
-      from_name: form.name.value.trim(),
-      reply_to: form.email.value.trim(),
-      message: form.message.value.trim(),
+    emailjs.sendForm("service_6a7invr", "template_7wyxz5ab", form)
+    .then(function(){
+      alert("Message sent successfully!");
+      form.reset();
+    })
+    .catch(function(error){
+      console.error("EmailJS Error:", error);
+      alert("Failed to send message.");
+    });
+  });
+});
 
       // Send both versions so EmailJS template will always match
       to: toEmail,
